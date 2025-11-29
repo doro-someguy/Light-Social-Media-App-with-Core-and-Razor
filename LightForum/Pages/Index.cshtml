@@ -1,0 +1,73 @@
+﻿@page
+@model LightForum.Pages.IndexModel
+
+<h1 class="mb-4">Welcome to LightForum</h1>
+
+
+<h2>Users</h2>
+
+<table class="table table-striped table-bordered mb-5">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nickname</th>
+            <th>Registered</th>
+            <th>Verified</th>
+            <th>Topics</th>
+            <th>Replies</th>
+            <th>Rep</th>
+            <th>Banned</th>
+            <th>Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Users)
+        {
+            <tr>
+                <td>@u.UserId</td>
+                <td>@u.UserNickname</td>
+                <td>@u.UserRegistrationDate</td>
+                <td>@u.UserIsVerified</td>
+                <td>@u.UserNoTopics</td>
+                <td>@u.UserNoReplies</td>
+                <td>@u.UserRep</td>
+                <td>@u.UserIsBanned</td>
+                <td>@u.UserIsAdmin</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h2>Topics</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Content Preview</th>
+            <th>Created</th>
+            <th>Likes</th>
+            <th>Replies</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model.Topics)
+        {
+            <tr>
+                <td>@t.TopicId</td>
+                <td>@t.TopicAuthor</td>
+                <td>@t.TopicTitle</td>
+                <td>@(t.TopicContent.Length > 30 
+                        ? t.TopicContent.Substring(0, 30) + "..." 
+                        : t.TopicContent)</td>
+                <td>@t.TopicCreationDate</td>
+                <td>@t.TopicLikes</td>
+                <td>@t.TopicNoReplies</td>
+            </tr>
+        }
+    </tbody>
+</table>
