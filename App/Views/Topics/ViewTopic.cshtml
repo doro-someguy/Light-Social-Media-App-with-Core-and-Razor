@@ -1,0 +1,81 @@
+﻿@model App.Models.Sets.PostAndComments
+@{
+    bool isFirst = true;
+}
+<div class="pageTitle">Viewing Topic Id = @Model.topic.id</div>
+<div class="pageExplanation">Here you engage in discussion and leave replies!</div>
+@if (!string.IsNullOrEmpty(Context.Session.GetString("AccountUser")))
+{
+    <div class="topicContainer">
+        <div class="topicTitle">@Model.topic.title</div>
+        <div class="topicCreator">Created by @Model.topic.author></div>
+        <div class="topicContent">@Model.topic.content</div>
+        @if(Context.Session.GetString("AccountUser") == Model.topic.author)
+        {
+            <a href="/topics/deletetopic/@Model.topic.id">
+                <button class="accountsFormButton">Delete</button>
+            </a>
+        }
+    </div>
+    <form class="accountsFormContainer topicsSize" method="post">
+        <div class="accountsFormLabel">Add a comment!</div>
+        <textarea class="accountsFormInput topicsContent" name="content"></textarea>
+        <button class="accountsFormButton" type="submit">ADD</button>
+    </form>
+    @if (@Model.comments.Count == 0)
+    {
+        <br />
+        <div class="pageTitle">No comments have been found yet</div>
+        <div class="pageExplanation">Be the first one to make a new comment!</div>
+    }
+    else
+    {
+        @foreach (Comment comment in @Model.comments)
+        {
+            if (isFirst == true)
+            {
+                <div class="topicContainer isFirst">
+                    <div class="topicCreator">Added by @comment.author</div>
+                    <div class="topicContent">@comment.content</div>
+                    @if (Context.Session.GetString("AccountUser") == comment.author)
+                    {
+                        <div class="topicOptionsContainer">
+                            <a href="/topics/deletecomment/@comment.id">
+                                <button class="accountsFormButton">Delete</button>
+                            </a>
+                            <a href="/topics/editcomment/@comment.id">
+                                <button class="accountsFormButton">Edit</button>
+                            </a>
+                        </div>
+                    }
+                </div>
+                isFirst = false;
+            }
+            else
+            {
+                <div class="topicContainer">
+                    <div class="topicCreator">Added by @comment.author</div>
+                    <div class="topicContent">@comment.content</div>
+                    @if (Context.Session.GetString("AccountUser") == Model.topic.author)
+                    {
+                        <div class="topicOptionsContainer">
+                            <a href="/topics/deletecomment/@comment.id">
+                                <button class="accountsFormButton">Delete</button>
+                            </a>
+                            <a href="/topics/editcomment/@comment.id">
+                                <button class="accountsFormButton">Edit</button>
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+
+        }
+    }
+}
+else
+{
+    <div>You cannot visualize this content!</div>
+    <div>You are not logged in.</div>
+}
+

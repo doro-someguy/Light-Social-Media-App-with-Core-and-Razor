@@ -1,0 +1,9 @@
+﻿@model App.Models.Comment
+<div class="pageTitle">Edit your comment!</div>
+<div class="pageExplanation">Once you're finished, press the "Edit" button to save!</div>
+<form class="accountsFormContainer topicsSize" method="post">
+    <div class="accountsFormLabel">CONTENT</div>
+    <textarea class="accountsFormInput topicsContent" name="content">@Model.content</textarea>
+    <button class="accountsFormButton" type="submit">Submit</button>
+</form>
+<div class="pageOkMessage"> @ViewData["message"]</div>

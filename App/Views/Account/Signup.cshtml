@@ -1,0 +1,22 @@
+﻿<div class="pageTitle">Registration Panel</div>
+<div class="pageExplanation">If you don't have an account, you can make one here!</div>
+<div>
+	<form class="accountsFormContainer" method="post">
+		<div class="accountsFormLabel">Username</div>
+		<input class="accountsFormInput" name="username" />
+		<div class="accountsFormLabel">Email</div>
+		<input class="accountsFormInput" name="email" />
+		<div class="accountsFormLabel">Password</div>
+		<input class="accountsFormInput" name="password" type="password" />
+		<div class="accountsFormLabel">Confirm Password</div>
+		<input class="accountsFormInput" name="confirmPassword" type="password" />
+		<button class="accountsFormButton" type="submit">SIGN UP</button>
+	</form>
+	@if(ViewData["deniedMessage"] is not null)
+	{
+		<div class="pageDeniedMessage">@ViewData["deniedMessage"]</div>
+	} else
+	{
+		<div class="pageOkMessage">@ViewData["okMessage"]</div>
+	}
+</div>

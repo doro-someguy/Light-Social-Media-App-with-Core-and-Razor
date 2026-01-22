@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - App</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="headerContainer">
+        <div class="navigationBackground">
+            <img src="~/background.jpg"/>
+        </div>
+        <div class="navigationBar">
+            @if (Context.Session.GetString("AccountUser") == null)
+            {
+                <div class="navigationBarLeft"></div>
+                <div class="navigationBarRight">
+                    <a href="/account/signup">
+                        <div class="navigationBarButton">
+                            <div class="navigationBarButtonText">
+                                Signup
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/account/login">
+                        <div class="navigationBarButton">
+                            <div class="navigationBarButtonText">
+                                Login
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="navigationBarLeft">
+                    <a href="/">
+                        <div class="navigationBarButton">
+                            <div class="navigationBarButtonText">
+                                Home
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/topics/viewtopics">
+                        <div class="navigationBarButton">
+                            <div class="navigationBarButtonText">
+                                Topics
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/topics/createtopic">
+                        <div class="navigationBarButton">
+                            <div class="navigationBarButtonText">
+                                Create
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="navigationBarRight">
+                    <a href="/account/logout">
+                        <div class="navigationBarButton">
+                            <div class="navigationBarButtonText">
+                                Logout
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="pageContent">
+        @RenderBody()
+        <div class="pageEnd">
+            This is a university project tailored for the Software Engineering II discipline at UPB - FIIR. <br/>
+            The team members of this project are Dorobantu Alexandru Mihai, Dima Matei Andrei and Cirstian Dragos Stefan. <br/>
+            The purpose of this project is to demonstrate the knowledge of using ASP.Net Core's MVC framework.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<div>
+	@if (!string.IsNullOrEmpty(Context.Session.GetString("AccountUser")))
+	{
+		<div class="pageTitle">
+			Esti conectat, @Context.Session.GetString("AccountUser") !
+		</div>
+		<div class="pageExplanation">
+		    Acum te afli pe pagina de "Home".
+		</div>
+	} 
+	else
+	{
+		<div class="pageTitle">
+			Nu esti inca conectat !
+		</div>
+		<div class="pageExplanation">
+			Pentru a avea acces la postari, trebuie sa te conectezi!
+		</div>
+	}
+
+	<br/>
+	<div class="pageTitle">
+		Citeste regulamentul de mai jos :
+	</div>
+	<div class="pageExplanation">
+		1. Nu folosi cuvinte sau expresii jignitoare. <br/>
+		2. Foloseste un titlu potrivit postarilor pe care le vei face. <br/>
+		3. Fii serios si nu oferi raspunsuri in batjocura.
+	</div>
+</div>

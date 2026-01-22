@@ -1,0 +1,23 @@
+﻿@model List<App.Models.Topic>
+<div class="pageTitle">Topics List</div>
+@if (!Model.Any())
+{
+    <div class="pageExplanation">No topics have been found!</div>
+}
+else
+{
+    <div class="pageExplanation">Here you can view the latest topics created by the users!</div>
+    <div>
+        @foreach (var topic in Model)
+        {
+            string url = "/topics/viewtopic/" + topic.id.ToString();
+            <a href="@url">
+                <div class="topicContainer">
+                    <div class="topicTitle">@topic.title</div>
+                    <div class="topicCreator">Created by @topic.author</div>
+                    <div class="topicContent">@topic.content</div>
+                </div>
+            </a>
+        }
+    </div>
+}

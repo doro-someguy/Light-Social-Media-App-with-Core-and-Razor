@@ -1,0 +1,27 @@
+﻿@{}
+@if(Context.Session.GetString("AccountUser") is not null) 
+{
+    <div class="pageTitle">Here you can create a new topic!</div>
+    <div class="pageExplanation">Make sure to have read the rules before!</div>
+    <form class="accountsFormContainer topicsSize" method="post">
+        <div class="accountsFormLabel">TITLE</div>
+        <input class="accountsFormInput" name="title" />
+        <div class="accountsFormLabel">CONTENT</div>
+         <textarea class="accountsFormInput topicsContent" name="content"></textarea>
+        <button class="accountsFormButton" type="submit">Submit</button>
+    </form>
+
+    @if (ViewData["message"] is not null)
+    {
+        <div class="pageOkMessage">@ViewData["message"]</div>
+    }
+    @if (ViewData["errmessage"] is not null)
+    {
+        <div class="pageDeniedMessage">@ViewData["errmessage"]</div>
+    }
+} 
+else
+{
+    <div class="pageDeniedMessage">You must sign in with your account in order to create new topics!</div>
+}
+

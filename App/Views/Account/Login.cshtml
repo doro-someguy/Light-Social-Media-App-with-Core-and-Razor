@@ -1,0 +1,21 @@
+﻿<div>
+    @if (Context.Session.GetString("AccountUser") != null)
+    {
+        <div class="pageTitle">Welcome, @Context.Session.GetString("AccountUser")!</div>
+        <div class="pageExplanation">You are now logged in.</div>
+    }
+    else
+    {
+        <div class="pageTitle">Login Panel</div>
+        <div class="pageExplanation">Enter your accounts credentials to log in!</div>
+        <form class="accountsFormContainer" method="post">
+            <div class="accountsFormLabel">USERNAME</div>
+            <input class ="accountsFormInput" name="username" />
+            <div class="accountsFormLabel">PASSWORD</div>
+            <input class="accountsFormInput" type="password" name="password" />
+            <button class="accountsFormButton" type="submit">LOGIN</button>
+        </form>
+
+        <div class="pageDeniedMessage">@ViewData["message"]</div>
+    }
+</div>
